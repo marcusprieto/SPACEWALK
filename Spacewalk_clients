@@ -1,0 +1,9 @@
+Incluindo client host no spacewalk
+
+# rpm -Uvh http://yum.spacewalkproject.org/2.4-client/RHEL/7/x86_64/spacewalk-client-repo-2.4-3.el7.noarch.rpm
+# BASEARCH=$(uname -i)
+# rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+# yum install rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugin
+
+# rhnreg_ks --serverUrl=https://spacewalk.spacewalk.casa/XMLRPC --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --username=admin --password=kennedys

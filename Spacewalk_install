@@ -1,0 +1,91 @@
+# yum-rhn-plugin
+
+# rhn-register
+
+# ports 80 and 443 open to destinations
+
+# yum install epel-release
+
+cat > /etc/yum.repos.d/jpackage-generic.repo << EOF
+[jpackage-generic]
+name=JPackage generic
+#baseurl=http://mirrors.dotsrc.org/pub/jpackage/5.0/generic/free/
+mirrorlist=http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0
+enabled=1
+gpgcheck=1
+gpgkey=http://www.jpackage.org/jpackage.asc
+EOF
+
+# rpm -Uvh http://yum.spacewalkproject.org/2.3/RHEL/7/x86_64/spacewalk-repo-2.3-4.el7.noarch.rpm
+
+# yum repolist && yum update 
+
+# yum install spacewalk-setup-postgresql
+
+# yum install spacewalk-postgresql
+
+# firewall-cmd --add-service=https --permanent
+
+# firewall-cmd --add-service=http --permanent
+
+# firewall-cmd --reload
+# Portas devem ser liberadas em todos os servidores
+# port 5222 tcp
+# port 5269 tcp
+# port 69 udp (tftp)
+
+# /etc/hosts
+# "ip do servidor" server1.unixmen.local server1
+
+# spacewalk comandos para instalacao
+
+# spacewalk-setup-postgresql create --db $NOME_DO_BANCO --user $USUARIO --password $SENHA --standalone --address $LOCAL_SERVER --remote $REDE/MASCARA ou '*'
+
+# spacewalk-setup --disconnected
+
+* Setting up SELinux..
+** Database: Setting up database connection for PostgreSQL backend.
+** Database: Installing the database:
+** Database: This is a long process that is logged in:
+** Database: /var/log/rhn/install_db.log
+*** Progress: ###
+** Database: Installation complete.
+** Database: Populating database.
+*** Progress: ############################
+* Configuring tomcat.
+* Setting up users and groups.
+** GPG: Initializing GPG and importing key.
+** GPG: Creating /root/.gnupg directory
+You must enter an email address.
+Admin Email Address? sk@unixmen.com ## Enter your Email ##
+* Performing initial configuration.
+* Activating Spacewalk.
+** Loading Spacewalk Certificate.
+** Verifying certificate locally.
+** Activating Spacewalk.
+* Configuring apache SSL virtual host.
+Should setup configure apache's default ssl server for you (saves original ssl.conf) [Y]? ## Press Enter ##
+** /etc/httpd/conf.d/ssl.conf has been backed up to ssl.conf-swsave
+* Configuring jabberd.
+* Creating SSL certificates.
+CA certificate password?  ## Enter certificate password ##
+Re-enter CA certificate password? ## Re-enter theassword ##
+Organization? Unixmen  ## Enter your Organization ##
+Organization Unit [server1.unixmen.local]?   ## Verify your hostname and press Enter ##
+Email Address [sk@unixmen.com]?  ## Enter your Email Id ##
+City? Erode  ## Enter city ##
+State? Tamilnadu  ## Enter your state ##
+Country code (Examples: "US", "JP", "IN", or type "?" to see a list)? IN ## Enter Country code ##
+** SSL: Generating CA certificate.
+** SSL: Deploying CA certificate.
+** SSL: Generating server certificate.
+** SSL: Storing SSL certificates.
+* Deploying configuration files.
+* Update configuration in database.
+* Setting up Cobbler..
+Cobbler requires tftp and xinetd services be turned on for PXE provisioning functionality. Enable these services [Y]?  ## Press Enter ##
+* Restarting services.
+Installation complete.
+Visit https://server1.unixmen.local to create the Spacewalk administrator account.
+
+Open up your web browser and navigate to https://hostname/ or https://ip-address/

@@ -1,0 +1,36 @@
+-Configurar o canal - cd /etc/pki/rpm-gpg/
+-gpg --with-fingerprint RPM-GPG-KEY-CentOS-7
+-criar o canal
+-criar o repositorio
+- atualizar repositorio - spacewalk-repo-sync -c centos7-base-x86_64
+
+BACKUP - 
+    /opt/rh/postgresql92/root/var/lib/pgsql/ (Embedded database only)
+    /etc/sysconfig/rhn/
+    /etc/rhn/
+    /etc/sudoers
+    /var/www/html/pub/
+    /var/satellite/redhat/[0-9]*/ (This is the location of any custom RPMs)
+    /root/.gnupg/
+    /root/ssl-build/
+    /etc/dhcp.conf
+    /etc/httpd
+    /var/lib/tftpboot/ (In Red Hat Enterprise Linux 6)
+    /var/lib/cobbler/
+    /var/lib/rhn/kickstarts/
+    /var/www/
+    /var/lib/nocpulse/
+    /etc/tomcat*/
+    /etc/jabberd/
+    /etc/cobbler/ 
+    /var/spacewalk/ 
+
+Portas que devem ser liberadas:
+
+80 	Outbound 	The Satellite Proxy uses this port to reach your Satellite URL.
+80 	Inbound 	Client requests arrive using either HTTP or HTTPS.
+443 	Inbound 	Client requests arrive using either HTTP or HTTPS.
+443 	Outbound 	The Satellite Proxy uses this port to reach the Satellite URL.
+4545 	Outbound 	If your Satellite Proxy is connected to a Satellite Server, Monitoring makes connections to rhnmd running on client systems through this TCP port, if Monitoring is enabled and probes are configured to registered systems.
+5222 	Inbound 	Allows osad client connections to the jabberd daemon on the Satellite Proxy when using Red Hat Network Push technology.
+5269 	Inbound and Outbound 	If the Satellite Proxy is connected a Satellite Server, this port must be open to allow server-to-server connections using jabberd for Red Hat Network Push Technology. 	
